@@ -20,7 +20,7 @@ in (finalnote + ccgrade)/2
   * Lexing, Parsing, [slides](https://compil-lyon.gitlabpages.inria.fr/cap21/capmif_cours02_lexing_parsing.pdf).
   * [Demo Parsing](https://compil-lyon.gitlabpages.inria.fr/cap21/ANTLRExamples.tar.xz).
 
-- :book: Deuxième Course session: Thursday 10/9/2020, 10:15. Amphi B (Gabriel Radanne)
+- :book: Second Course session: Thursday 10/9/2020, 10:15. Amphi B (Gabriel Radanne)
 
   * Interpreters [slides in english](https://compil-lyon.gitlabpages.inria.fr/cap21/capmif_cours03_interpreters.pdf).
   * [Demo files](https://compil-lyon.gitlabpages.inria.fr/cap21/ANTLRExamples.tar.xz)
