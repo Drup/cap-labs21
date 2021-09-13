@@ -36,7 +36,7 @@ in (finalnote + ccgrade)/2
 - :hammer: Lab 1: Tuesday 14/9/2020, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
 
     * Introduction to RISCV [TP01](TP01/cahierTP_Cap_2021.pdf)
-    * Code in [TP01/]()
+    * Code in [TP01/](TP01/)
     * ISA [ref pdf RISCV](https://compil-lyon.gitlabpages.inria.fr/cap21/riscv_isa.pdf).
 
 - :book: Third Course session: Thursday 17/9/2020, 10:15. Amphi B (Ludovic Henrio)
