@@ -38,4 +38,5 @@ Gabriel Radanne, Inria, LIP [email](mailto:gabriel.radanne@ens-lyon.fr)
 ## Contributors
 
   * Labs (ENSL 2019 version): Laure Gonnord, Ludovic Henrio, Matthieu Moy, Marc de Vismes
-  * 2020 : Paul Iannetta.
+  * 2020 : Gabriel Radanne, Paul Iannetta
+  * 2021 : Nicolas Chappe, Remi Di Guardia
