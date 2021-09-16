@@ -41,4 +41,4 @@ in (finalnote + ccgrade)/2
 
 - :book: Third Course session: Thursday 17/9/2020, 10:15. Amphi B (Ludovic Henrio)
 
-    * Formal Semantics 1
+    * Formal Semantics [slides](course/cap_cours03b_semantics.pdf)
