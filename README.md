@@ -11,7 +11,7 @@
   - Ludovic Henrio, CNRS, LIP https://lhenrio.github.io/
 
 * Visio (for co-modal): https://webconference2.ens-lyon.fr/b/gab-by3-zmw-11m
-* Page on the "portail des études ENSL" : https://etudes.ens-lyon.fr/course/view.php?id=4259
+* Page on the "portail des études ENSL" : https://etudes.ens-lyon.fr/course/view.php?id=4814
 * Discord Channel: https://discord.com/channels/691214205692542976/771392543853117460
 * Last year's video courses: https://www.youtube.com/playlist?list=PLtjm-n_Ts-J-6EU1WfVIWLhl1BUUR-Sqm
 
