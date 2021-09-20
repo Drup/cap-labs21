@@ -12,7 +12,7 @@ in (finalnote + ccgrade)/2
 
 # Week 1: 
 
-- :book: First Course session: Tuesday 7/9/2020, 15h45-17h45. Amphi B (Gabriel Radanne)
+- :book: First Course session: Tuesday 7/9/2021, 15h45-17h45. Amphi B (Gabriel Radanne)
   
   * Introduction: [transparents](course/capmif_cours01_intro_et_archi.pdf).
   * ISA [ref pdf RISCV](course/riscv_isa.pdf).
@@ -20,7 +20,7 @@ in (finalnote + ccgrade)/2
   * Lexing, Parsing, [slides](course/capmif_cours02_lexing_parsing.pdf).
   * [Demo Parsing](course/ANTLRExamples.tar.xz).
 
-- :book: Second Course session: Thursday 10/9/2020, 10:15. Amphi B (Gabriel Radanne)
+- :book: Second Course session: Friday 10/9/2021, 10:15. Amphi B (Gabriel Radanne)
 
   * Interpreters [slides in english](course/capmif_cours03_interpreters.pdf).
   * [Demo files](course/ANTLRExamples.tar.xz)
@@ -33,12 +33,19 @@ in (finalnote + ccgrade)/2
 
 # Week 2:
 
-- :hammer: Lab 1: Tuesday 14/9/2020, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
+- :hammer: Lab 1: Tuesday 14/9/2021, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
 
     * Introduction to RISCV [TP01](TP01/tp1.pdf)
     * Code in [TP01/](TP01/)
     * ISA [ref pdf RISCV](course/riscv_isa.pdf).
 
-- :book: Third Course session: Thursday 17/9/2020, 10:15. Amphi B (Ludovic Henrio)
+- :book: Third Course session: Friday 17/9/2021, 10:15. Amphi B (Ludovic Henrio)
 
     * Formal Semantics [slides](course/cap_cours03b_semantics.pdf)
+
+# Week 3:
+
+- :hammer: Lab 2: Tuesday 21/9/2021, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
+
+    * Lexing & Parsing with ANTLR4 [TP02](TP02/tp2.pdf)
+    * Code in [TP02/](TP02/).
