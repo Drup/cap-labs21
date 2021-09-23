@@ -49,3 +49,7 @@ in (finalnote + ccgrade)/2
 
     * Lexing & Parsing with ANTLR4 [TP02](TP02/tp2.pdf)
     * Code in [TP02/](TP02/).
+    
+- :book: Fourth Course session: Friday 24/9/2021, 10:15. Amphi B (Ludovic Henrio)
+    
+    * Typing [slides](course/cap_cours04_typing.pdf)
