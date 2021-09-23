@@ -52,4 +52,4 @@ in (finalnote + ccgrade)/2
     
 - :book: Fourth Course session: Friday 24/9/2021, 10:15. Amphi B (Ludovic Henrio)
     
-    * Typing [slides](course/cap_cours04_typing.pdf)
+    * Typing [slides](course/CAP_cours04_typing.pdf)
