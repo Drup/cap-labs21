@@ -1,0 +1,2 @@
+[tool.pyright]
+ignore = ["replace_allocation_api.py", "replace_target_api.py", "test_replace_mem.py", "MiniCCWrapper.py", "MiniCLexer.py", "MiniCParser.py", "MiniCVisitor.py"]
