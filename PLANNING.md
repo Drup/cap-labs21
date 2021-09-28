@@ -33,7 +33,7 @@ in (finalnote + ccgrade)/2
 
 # Week 2:
 
-- :hammer: Lab 1: Tuesday 14/9/2021, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
+- :hammer: Lab 1: Tuesday 14/9/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
     * Introduction to RISCV [TP01](TP01/tp1.pdf)
     * Code in [TP01/](TP01/)
@@ -45,7 +45,7 @@ in (finalnote + ccgrade)/2
 
 # Week 3:
 
-- :hammer: Lab 2: Tuesday 21/9/2021, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
+- :hammer: Lab 2: Tuesday 21/9/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
     * Lexing & Parsing with ANTLR4 [TP02](TP02/tp2.pdf)
     * Code in [TP02/](TP02/).
@@ -56,8 +56,8 @@ in (finalnote + ccgrade)/2
 
 # Week 3:
 
-- :hammer: Lab 3: Tuesday 28/9/2021, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
+- :hammer: Lab 3: Tuesday 28/9/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
-    * Lexing & Parsing with ANTLR4 [TP03](TP03/tp3.pdf)
+    * Interpreter & Typer [TP03](TP03/tp3.pdf)
     * Code in [TP03/](TP03/) and [MiniC/TP03/](MiniC/TP03/).
     * Graded lab due on https://etudes.ens-lyon.fr/course/view.php?id=4814 before 2021-10-04 23:59
