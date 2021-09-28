@@ -53,3 +53,11 @@ in (finalnote + ccgrade)/2
 - :book: Fourth Course session: Friday 24/9/2021, 10:15. Amphi B (Ludovic Henrio)
     
     * Typing [slides](course/CAP_cours04_typing.pdf)
+
+# Week 3:
+
+- :hammer: Lab 3: Tuesday 28/9/2021, 15h45-17h45. salle E001 (Nicolas Chappe, Remi Di Guardia)
+
+    * Lexing & Parsing with ANTLR4 [TP03](TP03/tp3.pdf)
+    * Code in [TP03/](TP03/) and [MiniC/TP03/](MiniC/TP03/).
+    * Graded lab due on https://etudes.ens-lyon.fr/course/view.php?id=4814 before 2021-10-04 23:59
