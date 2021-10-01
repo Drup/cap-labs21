@@ -61,3 +61,7 @@ in (finalnote + ccgrade)/2
     * Interpreter & Typer [TP03](TP03/tp3.pdf)
     * Code in [TP03/](TP03/) and [MiniC/TP03/](MiniC/TP03/).
     * Graded lab due on https://etudes.ens-lyon.fr/course/view.php?id=4814 before 2021-10-04 23:59
+
+- :book: Fifth Course session: Friday 1/10/2021, 10:15. Amphi B (Gabriel Radanne)
+
+  * 3 address code generation [slides in english](course/capmif_cours05_3ad_codegen.pdf)
