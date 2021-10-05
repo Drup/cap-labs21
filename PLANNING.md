@@ -66,7 +66,7 @@ in (finalnote + ccgrade)/2
 
   * 3 address code generation [slides in english](course/capmif_cours05_3ad_codegen.pdf)
 
-# Week 3:
+# Week 4:
 
 - :hammer: Lab 4: Tuesday 5/10/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
