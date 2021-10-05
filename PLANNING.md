@@ -3,7 +3,7 @@ _Academic first semester 2021-2022_
 
 * MCC (final grade computation) : 
 ```
-let ccgrade = average(Lab3, Lab5, Lab_IA, Lab_futures, partial)
+let ccgrade = average(Lab3, Lab5, Lab?, partial)
 in (finalnote + ccgrade)/2
 ```
 * The partial exam is this academic year replaced by a written housework ("DM").
@@ -54,7 +54,7 @@ in (finalnote + ccgrade)/2
     
     * Typing [slides](course/CAP_cours04_typing.pdf)
 
-# Week 3:
+# Week 4:
 
 - :hammer: Lab 3: Tuesday 28/9/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
@@ -66,7 +66,7 @@ in (finalnote + ccgrade)/2
 
   * 3 address code generation [slides in english](course/capmif_cours05_3ad_codegen.pdf)
 
-# Week 4:
+# Week 5:
 
 - :hammer: Lab 4: Tuesday 5/10/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
