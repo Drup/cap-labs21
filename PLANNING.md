@@ -65,3 +65,10 @@ in (finalnote + ccgrade)/2
 - :book: Fifth Course session: Friday 1/10/2021, 10:15. Amphi B (Gabriel Radanne)
 
   * 3 address code generation [slides in english](course/capmif_cours05_3ad_codegen.pdf)
+
+# Week 3:
+
+- :hammer: Lab 4: Tuesday 5/10/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
+
+    * Syntax directed code generation [TP04](MiniC/TP04/tp4.pdf)
+    * Code in [MiniC/TP04/](MiniC/TP04/).

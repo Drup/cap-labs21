@@ -1,3 +1,4 @@
+MYNAME = JohnDoe
 PACKAGE = MiniC
 # Example: stop at the first failed test:
 #   make PYTEST_OPTS=-x tests
@@ -25,8 +26,8 @@ main-deps: MiniCLexer.py MiniCParser.py TP03/MiniCInterpretVisitor.py TP03/MiniC
 
 .PHONY: tests tests-interpret tests-codegen tests-regalloc clean clean-tests tar
 
-tests: tests-pyright tests-interpret
 
+tests: tests-pyright tests-interpret tests-codegen tests-regalloc
 
 tests-pyright: antlr
 	pyright .
@@ -53,9 +54,9 @@ tests-codegen: antlr
 
 tar: clean
 	dir=$$(basename "$$PWD") && cd .. && \
-	tar cvfz "$$dir.tgz" --exclude="*.riscv" --exclude=".git" --exclude=".pytest_cache"  \
+	tar cvfz $(MYNAME).tgz --exclude="*.riscv" --exclude=".git" --exclude=".pytest_cache"  \
 	--exclude="htmlcov" "$$dir"
-	@echo "Created ../$$(basename "$$PWD").tgz"
+	@echo "Created ../$(MYNAME).tgz"
 
 # Remove any assembly file that was created by a test.
 # Don't just find -name \*.s -exec rm {} \; because there may be legitimate .s files in the testsuite.
