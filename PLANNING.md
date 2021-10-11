@@ -72,3 +72,17 @@ in (finalnote + ccgrade)/2
 
     * Syntax directed code generation [TP04](MiniC/TP04/tp4.pdf)
     * Code in [MiniC/TP04/](MiniC/TP04/).
+
+- :book: Sixth Course session: Friday 8/10/2021, 10:15. Amphi B (Gabriel Radanne)
+
+    * Intermediate Representation: CFG [slides in english](course/capmif_cours06_irs.pdf)
+
+# Week 6:
+
+- :book: Seventh Course session: Tuesday 12/10/2021, 15:45. Amphi B (Gabriel Radanne)
+
+    * SSA [slides in english](course/cap_cours06a_ssa.pdf)
+
+- :book: Eight Course session: Friday 15/10/2021, 10:15. Amphi B (Gabriel Radanne)
+
+    * Register allocation
