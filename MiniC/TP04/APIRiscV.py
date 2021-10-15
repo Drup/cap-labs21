@@ -28,6 +28,7 @@ class LinearCode:
         self._name = name
         self._start = None
         self._label_div_by_zero = self.new_label("div_by_zero")
+        self._stacksize = 0
 
     def add_instruction(self, i, link_with_succ=True):
         """Utility function to add an instruction in the program.
@@ -209,7 +210,8 @@ class LinearCode:
 
     def print_code(self, output, comment=None):
         # compute size for the local stack - do not forget to align by 16
-        cardoffset = 16
+        fo = self._stacksize  # allocate enough memory for stack
+        cardoffset = 8 * (fo + (0 if fo % 2 == 0 else 1)) + 16
         output.write(
             "##Automatically generated RISCV code, MIF08 & CAP\n")
         if comment is not None:
