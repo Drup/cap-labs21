@@ -86,3 +86,10 @@ in (finalnote + ccgrade)/2
 - :book: Eight Course session: Friday 15/10/2021, 10:15. Amphi B (Gabriel Radanne)
 
     * Register allocation
+
+# Week 7:
+
+- :hammer: Lab 5: Tuesday 19/10/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
+
+    * Control Flow Graph in SSA Form [TP05](MiniC/TP05/tp5a.pdf)
+    * Code in [MiniC/TP05/](MiniC/TP05/).
