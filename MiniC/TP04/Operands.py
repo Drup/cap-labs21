@@ -9,7 +9,10 @@ MIF08, CAP, CodeGeneration, RiscV API
 
 
 class Operand():
-    pass
+
+    def is_label(self):
+        """True if the instruction is a label."""
+        return False
 
 
 # signed version for riscv

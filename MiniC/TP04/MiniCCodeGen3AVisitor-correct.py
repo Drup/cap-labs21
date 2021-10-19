@@ -72,7 +72,14 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
 
     def visitBooleanAtom(self, ctx) -> Operands.Temporary:
         # true is 1 false is 0
-        raise NotImplementedError() # TODO (Exercise 5)
+        b = ctx.getText()
+        dest_temp = self._current_function.new_tmp()
+        if b == 'true':
+            val = 1
+        else:
+            val = 0
+        self._current_function.add_instruction_LI(dest_temp, val)
+        return dest_temp
 
     def visitIdAtom(self, ctx) -> Operands.Temporary:
         try:
@@ -93,13 +100,28 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
         return self.visit(ctx.atom())
 
     def visitAdditiveExpr(self, ctx) -> Operands.Temporary:
-        raise NotImplementedError() # TODO (Exercise 2)
+        tmpl = self.visit(ctx.expr(0))
+        tmpr = self.visit(ctx.expr(1))
+        dest_temp = self._current_function.new_tmp()
+        if ctx.myop.type == MiniCParser.PLUS:
+            self._current_function.add_instruction_ADD(dest_temp, tmpl, tmpr)
+        else:
+            self._current_function.add_instruction_SUB(dest_temp, tmpl, tmpr)
+        return dest_temp
 
     def visitOrExpr(self, ctx) -> Operands.Temporary:
-        raise NotImplementedError() # TODO (Exercise 2)
+        tmpl = self.visit(ctx.expr(0))
+        tmpr = self.visit(ctx.expr(1))
+        dest_temp = self._current_function.new_tmp()
+        self._current_function.add_instruction_OR(dest_temp, tmpl, tmpr)
+        return dest_temp
 
     def visitAndExpr(self, ctx) -> Operands.Temporary:
-        raise NotImplementedError() # TODO (Exercise 2)
+        tmpl = self.visit(ctx.expr(0))
+        tmpr = self.visit(ctx.expr(1))
+        dest_temp = self._current_function.new_tmp()
+        self._current_function.add_instruction_AND(dest_temp, tmpl, tmpr)
+        return dest_temp
 
     def visitEqualityExpr(self, ctx) -> Operands.Temporary:
         return self.visitRelationalExpr(ctx)
@@ -110,17 +132,57 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
             print("relational expression:")
             print(Trees.toStringTree(ctx, None, self._parser))
             print("Condition:", c)
-        raise NotImplementedError() # TODO (Exercise 5)
+        tmpl = self.visit(ctx.expr(0))
+        tmpr = self.visit(ctx.expr(1))
+        dest = self._current_function.new_tmp()
+        end_relational = self._current_function.new_label('end_relational')
+        self._current_function.add_instruction_LI(dest, 0)
+        self._current_function.add_instruction_cond_JUMP(
+            end_relational, tmpl, c.negate(), tmpr)
+        self._current_function.add_instruction_LI(dest, 1)
+        self._current_function.add_label(end_relational)
+        return dest
 
     def visitMultiplicativeExpr(self, ctx) -> Operands.Temporary:
         div_by_zero_lbl = self._current_function.get_label_div_by_zero()
-        raise NotImplementedError() # TODO (Exercise 2 or at the end)
+        tmpl = self.visit(ctx.expr(0))
+        tmpr = self.visit(ctx.expr(1))
+        dest_temp = self._current_function.new_tmp()
+        if ctx.myop.type == MiniCParser.MULT:
+            self._current_function.add_instruction_MUL(dest_temp, tmpl, tmpr)
+        elif ctx.myop.type == MiniCParser.DIV:
+            self._current_function.add_instruction_cond_JUMP(
+                div_by_zero_lbl, tmpr, Condition("beq"), 0)
+            self._current_function.add_instruction_DIV(dest_temp, tmpl, tmpr)
+        elif ctx.myop.type == MiniCParser.MOD:
+            self._current_function.add_instruction_cond_JUMP(
+                div_by_zero_lbl, tmpr, Condition("beq"), 0)
+            self._current_function.add_instruction_REM(dest_temp, tmpl, tmpr)
+        else:
+            raise MiniCInternalError("Multiplicative expr, but not MUL|DIV|MOD?")
+        return dest_temp
 
     def visitNotExpr(self, ctx) -> Operands.Temporary:
-        raise NotImplementedError() # TODO (Exercise 5)
+        temp = self.visit(ctx.expr())
+        dest_temp = self._current_function.new_tmp()
+        # there is no boolean not :-(
+        labelneg = self._current_function.new_label("cond_neg")
+        labelend = self._current_function.new_label("cond_end")
+        self._current_function.add_instruction_cond_JUMP(
+            labelneg, temp,
+            Condition("beq"), 0)
+        self._current_function.add_instruction_LI(dest_temp, 0)
+        self._current_function.add_instruction_JUMP(labelend)
+        self._current_function.add_label(labelneg)
+        self._current_function.add_instruction_LI(dest_temp, 1)
+        self._current_function.add_label(labelend)
+        return dest_temp
 
     def visitUnaryMinusExpr(self, ctx) -> Operands.Temporary:
-        raise NotImplementedError("unaryminusexpr") # TODO (Exercise 2)
+        tmp = self.visit(ctx.expr())
+        dest_temp = self._current_function.new_tmp()
+        self._current_function.add_instruction_SUB(dest_temp, Operands.ZERO, tmp)
+        return dest_temp
 
     def visitProgRule(self, ctx) -> None:
         self.visitChildren(ctx)
@@ -152,7 +214,17 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
         if self._debug:
             print("if statement")
         end_if_label = self._current_function.new_label("end_if")
-        raise NotImplementedError() # TODO (Exercise 5)
+        else_label = self._current_function.new_label('else')
+        cond = self.visit(ctx.expr())
+        self._current_function.add_instruction_cond_JUMP(else_label, cond,
+                                                         Condition("beq"), 0)
+        self.visit(ctx.then_block)
+        self._current_function.add_instruction_JUMP(end_if_label)
+        self._current_function.add_label(else_label)
+        if ctx.else_block is not None:
+            if self._debug:
+                print("else  ")
+            self.visit(ctx.else_block)
         self._current_function.add_label(end_if_label)
 
     def visitWhileStat(self, ctx) -> None:
@@ -161,7 +233,15 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
             print(Trees.toStringTree(ctx.expr(), None, self._parser))
             print("and block is:")
             print(Trees.toStringTree(ctx.stat_block(), None, self._parser))
-        raise NotImplementedError() # TODO (Exercise 5)
+        labelbegin = self._current_function.new_label("begin_while")
+        labelend = self._current_function.new_label("end_while")
+        self._current_function.add_label(labelbegin)
+        cond_temp = self.visit(ctx.expr())
+        self._current_function.add_instruction_cond_JUMP(labelend, cond_temp,
+                                                         Condition("beq"), 0)
+        self.visit(ctx.stat_block())
+        self._current_function.add_instruction_JUMP(labelbegin)
+        self._current_function.add_label(labelend)
     # visit statements
 
     def visitPrintlnintStat(self, ctx) -> None:
@@ -181,3 +261,21 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
         for stat in ctx.stat():
             self._current_function.add_comment(Trees.toStringTree(stat, None, self._parser))
             self.visit(stat)
+
+    def visitForForStat(self, ctx) -> None:
+        raise NotImplementedError("fortran for")  # pragma: no cover
+
+    def visitForCStat(self, ctx) -> None:
+        raise NotImplementedError("C for")  # pragma: no cover
+
+    def visitArrayAllocExpr(self, ctx) -> None:
+        raise NotImplementedError("array")  # pragma: no cover
+
+    def visitArrayReadExpr(self, ctx) -> None:
+        raise NotImplementedError("array")  # pragma: no cover
+
+    def visitArrayWriteStat(self, ctx) -> None:
+        raise NotImplementedError("array")  # pragma: no cover
+
+    def visitArrayType(self, ctx) -> None:
+        raise NotImplementedError("array")  # pragma: no cover

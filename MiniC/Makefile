@@ -9,6 +9,10 @@ ifdef TEST_FILES
 export TEST_FILES
 endif
 
+ifdef SSA
+export ENABLE_SSA=1
+endif
+
 PYTEST_BASE_OPTS=-vv -rs --failed-first --cov="$(PWD)" --cov-report=term --cov-report=html
 
 ifndef ANTLR4

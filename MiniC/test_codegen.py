@@ -27,6 +27,8 @@ Unit test infrastructure for testing code generation:
 
 DISABLE_TYPECHECK = False
 TYPECHECK_ONLY = False
+ENABLE_SSA = False
+env_bool_variable('ENABLE_SSA', globals())
 
 HERE = os.path.dirname(os.path.realpath(__file__))
 if HERE == os.path.realpath('.'):
@@ -122,6 +124,8 @@ class TestCodeGen(TestExpectPragmas):
         out_opt = '--output=' + output_name
         cmd = [sys.executable, MINIC_COMPILE,
                alloc_opt, out_opt]
+        if ENABLE_SSA:
+            cmd += ['--ssa']
         if DISABLE_TYPECHECK:
             cmd += ['--disable-typecheck']
         if TYPECHECK_ONLY:

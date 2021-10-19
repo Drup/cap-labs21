@@ -14,8 +14,12 @@ from Errors import MiniCUnsupportedError, MiniCInternalError, AllocationError
 from TP04.SimpleAllocations import (
     NaiveAllocator, AllInMemAllocator
 )
-try:  # If only TP04 in MiniC and not TP05
+try:
     from TP05.CFG import CFG
+    from TP05.SSA import (enter_ssa, exit_ssa)
+except ModuleNotFoundError:
+    pass
+try:
     from TP05.SmartAllocation import SmartAllocator
 except ModuleNotFoundError:
     pass
@@ -45,9 +49,9 @@ class CountErrorListener(ErrorListener):
         self.count += 1
 
 
-def main(inputname, reg_alloc,
+def main(inputname, reg_alloc, enable_ssa=False,
          typecheck=True, typecheck_only=False, stdout=False, output_name=None, debug=False,
-         debug_graphs=False):
+         debug_graphs=False, ssa_graphs=False):
     (basename, rest) = os.path.splitext(inputname)
     if not typecheck_only:
         if stdout:
@@ -88,14 +92,22 @@ def main(inputname, reg_alloc,
         visitor3.visit(tree)
         for function in visitor3.get_functions():
             # Allocation part
-            try:  # If only TP04 in MiniC and not TP05
-                cfg = CFG(function)
-            except NameError:
-                cfg = function
+            cfg = CFG(function)
             if debug_graphs:
                 s = "{}.{}.dot".format(basename, cfg._name)
                 print("Output", s)
                 cfg.print_dot(s)
+            if enable_ssa:
+                DF = enter_ssa(cfg, basename, debug, ssa_graphs)
+                if ssa_graphs:
+                    s = "{}.{}.ssa.dot".format(basename, cfg._name)
+                    print("Output", s)
+                    cfg.print_dot(s, DF, True)
+                exit_ssa(cfg)
+                if ssa_graphs:
+                    s = "{}.{}.exitssa.dot".format(basename, cfg._name)
+                    print("Output", s)
+                    cfg.print_dot(s)
             allocator = None
             if reg_alloc == "naive":
                 allocator = NaiveAllocator(cfg)
@@ -126,6 +138,9 @@ if __name__ == '__main__':
     parser.add_argument('--reg-alloc', type=str,
                         choices=['none', 'naive', 'all_in_mem', 'smart'],
                         help='Allocation to perform')
+    parser.add_argument('--ssa', action='store_true',
+                        default=False,
+                        help='Enable SSA form')
     parser.add_argument('--stdout', action='store_true',
                         help='Generate code to stdout')
     parser.add_argument('--debug', action='store_true',
@@ -134,6 +149,9 @@ if __name__ == '__main__':
     parser.add_argument('--graphs', action='store_true',
                         default=False,
                         help='Display graphs (CFG, conflict graph).')
+    parser.add_argument('--ssa-graphs', action='store_true',
+                        default=False,
+                        help='Display SSA graphs (DT, DF).')
     parser.add_argument('--disable-typecheck', action='store_true',
                         default=False,
                         help="Don't run the typechecker before generating code")
@@ -150,10 +168,10 @@ if __name__ == '__main__':
         exit(1)
 
     try:
-        main(args.filename, args.reg_alloc,
+        main(args.filename, args.reg_alloc, args.ssa,
              not args.disable_typecheck, args.typecheck_only,
              args.stdout, args.output, args.debug,
-             args.graphs)
+             args.graphs, args.ssa_graphs)
     except MiniCUnsupportedError as e:
         print(e)
         exit(5)

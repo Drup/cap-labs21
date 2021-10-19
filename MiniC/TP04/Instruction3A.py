@@ -25,6 +25,14 @@ class Instruction:
         """True if the instruction is a jump (conditional or not)."""
         return False
 
+    def is_cond_jump(self):
+        """True if the instruction is a jump (conditional or not)."""
+        return False
+
+    def is_label(self):
+        """True if the instruction is a label."""
+        return False
+
     def defined(self):
         return []
 
@@ -66,6 +74,10 @@ class Instru3A(Instruction):
         """True if the instruction is a jump (conditional or not)."""
         return (self.get_name().startswith("b")
                 or self.get_name() == "j")
+
+    def is_cond_jump(self):
+        """True if the instruction is a conditional jump."""
+        return self.get_name().startswith("b")
 
     def is_read_only(self):
         """True if the instruction only reads from its operands.
@@ -125,6 +137,20 @@ class Instru3A(Instruction):
         """
         return self.get_name(), self.args
 
+    def label(self):
+        """Utility function to find the label of a jump
+        Assumes there is only one label!
+        """
+        labels = [arg for arg in self.args if arg.is_label()]
+        assert (len(labels) == 1)
+        return labels[0]
+
+    def set_label(self, label):
+        """Utility function to replace the label of a jump
+        Assumes there is only one label!
+        """
+        self.args = [label if arg.is_label() else arg for arg in self.args]
+
 
 class Label(Instruction, Operand):
     """ A label is here a regular instruction"""
@@ -142,13 +168,16 @@ class Label(Instruction, Operand):
     def printIns(self, stream):
         print(str(self) + ':', file=stream)
 
+    def is_label(self):
+        """True if the instruction is a label."""
+        return True
+
 
 class Jump(Instru3A):
     """ A Jump is a specific kind of instruction"""
 
-    def __init__(self, label):
+    def __init__(self, label: Label):
         super().__init__("j", label)
-        self._label: Label = label
 
 
 class CondJump(Instru3A):
@@ -157,7 +186,6 @@ class CondJump(Instru3A):
     def __init__(self, ins, op1, op2, label: Label):
         assert(ins.startswith("b"))
         super().__init__(ins, op1, op2, label)
-        self._label: Label = label
 
 
 class Comment(Instruction):
