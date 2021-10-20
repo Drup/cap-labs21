@@ -59,6 +59,10 @@ class AllInMemAllocator(Allocator):
             {temp: self._function_code.new_offset(FP)
              for temp in self._function_code._pool._all_temps})
         self._function_code._stacksize = self._function_code.get_offset()
+        if self._function_code._stacksize > 234:
+            raise AllocationError(
+                    "Too many temporaries ({}) for the all in memory allocation, sorry."
+                    .format(len(self._function_code._pool._all_temps)))
         self._function_code.iter_instructions(replace_mem)
 
 

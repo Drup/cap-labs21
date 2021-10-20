@@ -139,9 +139,11 @@ class TestCodeGen(TestExpectPragmas):
             if "AllocationError" in result.output:
                 if reg_alloc == 'naive':
                     pytest.skip("Too big for the naive allocator")
+                elif reg_alloc == 'all_in_mem':
+                    pytest.skip("Too big for the all in memory allocator")
                 else:
                     raise Exception("AllocationError should only happen "
-                                    "for reg_alloc='naive'")
+                                    "for reg_alloc='naive' or reg_alloc='all_in_mem'")
             elif ("NotImplementedError" in result.output and
                   SKIP_NOT_IMPLEMENTED):
                 pytest.skip("Feature not implemented in this compiler")
