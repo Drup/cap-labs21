@@ -85,7 +85,7 @@ in (finalnote + ccgrade)/2
 
 - :book: Eight Course session: Friday 15/10/2021, 10:15. Amphi B (Gabriel Radanne)
 
-    * Register allocation
+    * Register allocation [slides in english](course/cap_cours07_regalloc.pdf)
 
 # Week 7:
 
@@ -93,3 +93,7 @@ in (finalnote + ccgrade)/2
 
     * Control Flow Graph in SSA Form [TP05](MiniC/TP05/tp5a.pdf)
     * Code in [MiniC/TP05/](MiniC/TP05/).
+
+- :book: Nineth Course session: Friday 22/10/2021, 10:15. Amphi B (Gabriel Radanne)
+
+    * Register allocation, 2nd part [slides in english](course/cap_cours07_regalloc.pdf)
