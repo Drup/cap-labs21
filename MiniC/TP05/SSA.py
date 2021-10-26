@@ -29,7 +29,7 @@ class PhiNode(Instruction):
         return True
 
     def defined(self):
-        return self._var
+        return [self._var]
 
     def used(self):
         return self._srcs
@@ -165,7 +165,7 @@ def rename_variables(function: CFG, DT):
         rename_node(function, DT, Renamer(function._pool), b)
 
 
-def print_ssa_graph(basename, fname, comment, graph):
+def print_ssa_graph(basename, fname, comment, graph):  # pragma: no cover
     dot = Digraph(comment=comment)
     for k in graph:
         dot.node(str(k.get_label()))

@@ -14,13 +14,18 @@ from Errors import MiniCUnsupportedError, MiniCInternalError, AllocationError
 from TP04.SimpleAllocations import (
     NaiveAllocator, AllInMemAllocator
 )
-try:
+try:  # Common part for TP05 and (TP05a + TP05b)
     from TP05.CFG import CFG
-    from TP05.SSA import (enter_ssa, exit_ssa)
+    from TP05.SmartAllocation import SmartAllocator
 except ModuleNotFoundError:
     pass
-try:
-    from TP05.SmartAllocation import SmartAllocator
+try:  # Liveness for TP05 (M1IF08)
+    from TP05.LivenessDataFlow import LivenessDataFlow
+except ModuleNotFoundError:
+    pass
+try:  # SSA for (TP05a + TP05b) (CAP)
+    from TP05.SSA import (enter_ssa, exit_ssa)
+    from TP05.LivenessSSA import LivenessSSA
 except ModuleNotFoundError:
     pass
 
@@ -103,11 +108,11 @@ def main(inputname, reg_alloc, enable_ssa=False,
                     s = "{}.{}.ssa.dot".format(basename, cfg._name)
                     print("Output", s)
                     cfg.print_dot(s, DF, True)
-                exit_ssa(cfg)
-                if ssa_graphs:
-                    s = "{}.{}.exitssa.dot".format(basename, cfg._name)
-                    print("Output", s)
-                    cfg.print_dot(s)
+            liveness = None
+            if enable_ssa:
+                liveness = LivenessSSA(cfg, debug=debug)
+            else:
+                liveness = LivenessDataFlow(cfg, debug=debug)
             allocator = None
             if reg_alloc == "naive":
                 allocator = NaiveAllocator(cfg)
@@ -116,14 +121,24 @@ def main(inputname, reg_alloc, enable_ssa=False,
                 allocator = AllInMemAllocator(cfg)
                 comment = "all-in-memory allocation"
             elif reg_alloc == "smart":
-                allocator = SmartAllocator(cfg, basename, debug, debug_graphs)
+                allocator = SmartAllocator(cfg, basename, liveness,
+                                           debug, debug_graphs)
                 comment = "smart allocation with graph coloring"
             elif reg_alloc == "none":
                 comment = "non executable 3-Address instructions"
             else:
                 raise ValueError("Invalid allocation strategy:" + reg_alloc)
             if allocator:
-                allocator.run()
+                allocator.prepare()
+            if enable_ssa:
+                exit_ssa(cfg)
+                comment += " with SSA"
+            if allocator:
+                allocator.rewriteCode(cfg)
+            if enable_ssa and ssa_graphs:
+                s = "{}.{}.exitssa.dot".format(basename, cfg._name)
+                print("Output", s)
+                cfg.print_dot(s, view=True)
             cfg.print_code(output, comment=comment)
             if debug:
                 visitor3.printSymbolTable()

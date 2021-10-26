@@ -91,7 +91,7 @@ class Block:
         self._gen = gen
         self._kill = kill
 
-    def print_gen_kill(self, i):
+    def print_gen_kill(self, i):  # pragma: no cover
         print("block " + str(self._label), ":", i)
         print("gen: " + regset_to_string(self._gen))
         print("kill: " + regset_to_string(self._kill) + "\n")
@@ -301,7 +301,7 @@ class CFG:
         output.write(
             "##Automatically generated RISCV code, MIF08 & CAP\n")
         if comment is not None:
-            output.write("##{} version\n".format(comment))
+            output.write("## {}\n".format(comment))
         output.write("\n\n##prelude\n")
         output.write("""
         .text
@@ -326,7 +326,7 @@ class CFG:
         ret
         """.format(cardoffset, self._end))
 
-    def print_dot(self, filename, DF=None, view=False):
+    def print_dot(self, filename, DF=None, view=False):  # pragma: no cover
         graph = nx.DiGraph()
         # nodes
         for name, blk in self._listBlk.items():

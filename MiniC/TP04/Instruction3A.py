@@ -1,3 +1,4 @@
+from typing import List
 from .Operands import (Operand, Immediate, Renamer, Temporary)
 
 """
@@ -33,10 +34,10 @@ class Instruction:
         """True if the instruction is a label."""
         return False
 
-    def defined(self):
+    def defined(self) -> List[Operand]:
         return []
 
-    def used(self):
+    def used(self) -> List[Operand]:
         return []
 
     def printIns(self, stream):

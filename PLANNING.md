@@ -89,11 +89,18 @@ in (finalnote + ccgrade)/2
 
 # Week 7:
 
-- :hammer: Lab 5: Tuesday 19/10/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
+- :hammer: Lab 5a: Tuesday 19/10/2021, 15h45-17h45. Salle E001 (Nicolas Chappe, Remi Di Guardia)
 
-    * Control Flow Graph in SSA Form [TP05](MiniC/TP05/tp5a.pdf)
+    * Control Flow Graph in SSA Form [TP05a](MiniC/TP05/tp5a.pdf)
     * Code in [MiniC/TP05/](MiniC/TP05/).
 
 - :book: Nineth Course session: Friday 22/10/2021, 10:15. Amphi B (Gabriel Radanne)
 
     * Register allocation, 2nd part [slides in english](course/cap_cours07_regalloc.pdf)
+
+# Week 8:
+
+- :hammer: Lab 5b: Tuesday 26/10/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
+
+    * Smart Register Allocation [TP05b](MiniC/TP05/tp5b.pdf)
+    * Code in [MiniC/TP05/](MiniC/TP05/).

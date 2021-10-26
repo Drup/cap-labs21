@@ -4,3 +4,6 @@ exclude_lines =
     raise MiniCInternalError
     raise MiniCUnsupportedError
     if debug:
+    if debug_graphs:
+    if self._debug:
+    if self._debug_graphs:

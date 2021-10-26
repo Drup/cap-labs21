@@ -7,8 +7,15 @@ class Allocator():
     def __init__(self, function):
         self._function_code = function
 
-    def run(self):
+    def prepare(self):
         pass
+
+    def rewriteCode(self, listcode):
+        pass
+
+    def run(self):
+        self.prepare()
+        self.rewriteCode(self._function_code)
 
 
 class NaiveAllocator(Allocator):
@@ -16,7 +23,7 @@ class NaiveAllocator(Allocator):
         super().__init__(*args)
 
     # Allocation functions
-    def run(self):
+    def prepare(self):
         """ Allocate all temporaries to registers.
         Fail if there are too many temporaries."""
         regs = list(GP_REGS)  # Get a writable copy
@@ -30,7 +37,11 @@ class NaiveAllocator(Allocator):
                     .format(len(self._function_code._pool._all_temps)))
             temp_allocation[tmp] = reg
         self._function_code._pool.set_temp_allocation(temp_allocation)
-        self._function_code.iter_instructions(replace_reg)
+
+    def rewriteCode(self, listcode):
+        # Finally, modify the code to replace temporaries with
+        # regs/memory locations
+        listcode.iter_instructions(replace_reg)
 
 
 def replace_reg(old_i):
@@ -49,7 +60,7 @@ class AllInMemAllocator(Allocator):
     def __init__(self, *args):
         super().__init__(*args)
 
-    def run(self):
+    def prepare(self):
         """Allocate all temporaries to memory. Hypothesis:
         - Expanded instructions can use  s2 and
         s3 (to store the values of temporaries before the actual
@@ -63,7 +74,11 @@ class AllInMemAllocator(Allocator):
             raise AllocationError(
                     "Too many temporaries ({}) for the all in memory allocation, sorry."
                     .format(len(self._function_code._pool._all_temps)))
-        self._function_code.iter_instructions(replace_mem)
+
+    def rewriteCode(self, listcode):
+        # Finally, modify the code to replace temporaries with
+        # regs/memory locations
+        listcode.iter_instructions(replace_mem)
 
 
 def replace_mem(old_i):
