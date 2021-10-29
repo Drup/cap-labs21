@@ -104,3 +104,7 @@ in (finalnote + ccgrade)/2
 
     * Smart Register Allocation [TP05b](MiniC/TP05/tp5b.pdf)
     * Code in [MiniC/TP05/](MiniC/TP05/).
+
+- :book: Tenth Course session: Friday 29/10/2021, 10:15. Amphi B (Gabriel Radanne)
+
+    * SSA for Fun and Optimisations, 2nd part [slides in english](course/cap_cours06b_ssa_optim.pdf)
