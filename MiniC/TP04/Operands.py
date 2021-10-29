@@ -185,15 +185,15 @@ GP_REGS = S[4:] + T  # s0, ..., s3 are special
 class TemporaryPool:
     """Manage a pool of temporaries."""
 
-    _allocation: dict
-
     def __init__(self):
         self._all_temps = []
         self._current_num = 0
+        self._allocation: dict = dict()
 
     def add_tmp(self, reg):
         """Add a register to the pool."""
         self._all_temps.append(reg)
+        self._allocation[reg] = reg  # While no allocation, return the temporary itself
 
     def set_temp_allocation(self, allocation):
         """Give a mapping from temporarys to actual registers. allocation must

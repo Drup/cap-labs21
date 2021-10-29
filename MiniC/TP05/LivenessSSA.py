@@ -66,6 +66,8 @@ class LivenessSSA:
         return uses
 
     def conflict_on_phis(self):
+        """Ensures that variables defined by phi instructions are in conflict
+        with one-another"""
         for b in self._function.get_blocks():
             phis = [i for i in b.get_instructions() if isinstance(i, PhiNode)]
             previous_vars = set()

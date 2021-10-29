@@ -14,18 +14,24 @@ from Errors import MiniCUnsupportedError, MiniCInternalError, AllocationError
 from TP04.SimpleAllocations import (
     NaiveAllocator, AllInMemAllocator
 )
-try:  # Common part for TP05 and (TP05a + TP05b)
-    from TP05.CFG import CFG
-    from TP05.SmartAllocation import SmartAllocator
+try:  # Common part for TP05 and TP05a
+    from TP05.CFG import CFG  # type: ignore[import]
+except ModuleNotFoundError:
+    pass
+try:  # Common part for TP05 and TP05b
+    from TP05.SmartAllocation import SmartAllocator  # type: ignore[import]
 except ModuleNotFoundError:
     pass
 try:  # Liveness for TP05 (M1IF08)
-    from TP05.LivenessDataFlow import LivenessDataFlow
+    from TP05.LivenessDataFlow import LivenessDataFlow  # type: ignore[import]
 except ModuleNotFoundError:
     pass
-try:  # SSA for (TP05a + TP05b) (CAP)
-    from TP05.SSA import (enter_ssa, exit_ssa)
-    from TP05.LivenessSSA import LivenessSSA
+try:  # SSA for TP05a (CAP)
+    from TP05.SSA import (enter_ssa, exit_ssa)  # type: ignore[import]
+except ModuleNotFoundError:
+    pass
+try:  # Liveness for TP05b (CAP)
+    from TP05.LivenessSSA import LivenessSSA  # type: ignore[import]
 except ModuleNotFoundError:
     pass
 
@@ -108,11 +114,6 @@ def main(inputname, reg_alloc, enable_ssa=False,
                     s = "{}.{}.ssa.dot".format(basename, cfg._name)
                     print("Output", s)
                     cfg.print_dot(s, DF, True)
-            liveness = None
-            if enable_ssa:
-                liveness = LivenessSSA(cfg, debug=debug)
-            else:
-                liveness = LivenessDataFlow(cfg, debug=debug)
             allocator = None
             if reg_alloc == "naive":
                 allocator = NaiveAllocator(cfg)
@@ -121,6 +122,21 @@ def main(inputname, reg_alloc, enable_ssa=False,
                 allocator = AllInMemAllocator(cfg)
                 comment = "all-in-memory allocation"
             elif reg_alloc == "smart":
+                liveness = None
+                if enable_ssa:
+                    try:
+                        liveness = LivenessSSA(cfg, debug=debug)
+                    except NameError:
+                        form = "CFG in SSA form"
+                        raise ValueError("Invalid dataflow form: \
+liveness file not found for {}.".format(form))
+                else:
+                    try:
+                        liveness = LivenessDataFlow(cfg, debug=debug)
+                    except NameError:
+                        form = "CFG not in SSA form"
+                        raise ValueError("Invalid dataflow form: \
+liveness file not found for {}.".format(form))
                 allocator = SmartAllocator(cfg, basename, liveness,
                                            debug, debug_graphs)
                 comment = "smart allocation with graph coloring"
