@@ -121,4 +121,4 @@ in (finalnote + ccgrade)/2
 
 - :book: Course session: Friday 19/11/2021 - 10:15. Amphi B (Ludovic Henrio)
 
-    * FUnctions: semantics and safety [slides in english](course/2021-cap_cours09B_funsem.pdf)
+    * Functions: semantics and safety [slides in english](course/2021-cap_cours09B_funsem.pdf)
