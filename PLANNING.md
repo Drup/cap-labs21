@@ -108,3 +108,17 @@ in (finalnote + ccgrade)/2
 - :book: Tenth Course session: Friday 29/10/2021, 10:15. Amphi B (Gabriel Radanne)
 
     * SSA for Fun and Optimisations, 2nd part [slides in english](course/cap_cours06b_ssa_optim.pdf)
+
+# Week 9:
+
+- :hammer: Lab 5b: Tuesday 26/10/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
+
+    * TBD
+
+- :book: Course session: Tuesday 16/11/2021 - 8:00. Salle MGN1.422 - UMPA - salle 435 (Ludovic Henrio)
+
+    * Functions: code generation and typing [slides in english](course/2021-cap_cours09A_func_codegen_typing.pdf)
+
+- :book: Course session: Friday 19/11/2021 - 10:15. Amphi B (Ludovic Henrio)
+
+    * FUnctions: semantics and safety [slides in english](course/2021-cap_cours09B_funsem.pdf)
