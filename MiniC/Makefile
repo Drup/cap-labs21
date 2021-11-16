@@ -28,32 +28,32 @@ antlr MiniCLexer.py MiniCParser.py: $(PACKAGE).g4
 
 main-deps: MiniCLexer.py MiniCParser.py TP03/MiniCInterpretVisitor.py TP03/MiniCTypingVisitor.py
 
-.PHONY: tests tests-interpret tests-codegen tests-regalloc clean clean-tests tar
+.PHONY: tests tests-interpret tests-codegen clean clean-tests tar antlr
 
 
-tests: tests-pyright tests-interpret tests-codegen tests-regalloc
+tests: tests-interpret tests-codegen
 
 tests-pyright: antlr
 	pyright .
 
-tests-interpret: test_interpreter.py main-deps
+tests-interpret: tests-pyright test_interpreter.py main-deps
 	python3 -m pytest $(PYTEST_BASE_OPTS) $(PYTEST_OPTS) test_interpreter.py
 
 
 # Test for naive allocator (also runs test_expect to check // EXPECTED directives):
-tests-naive: antlr
+tests-naive: tests-pyright antlr
 	python3 -m pytest $(PYTEST_BASE_OPTS) $(PYTEST_OPTS) ./test_codegen.py -k 'naive or expect'
 
 # Test for all but the smart allocator, i.e. everything that lab4 should pass:
-tests-notsmart: antlr
+tests-notsmart: tests-pyright antlr
 	python3 -m pytest $(PYTEST_BASE_OPTS) $(PYTEST_OPTS) ./test_codegen.py -k 'not smart'
 
 # Test just the smart allocation (quicker than tests)
-tests-smart: antlr
+tests-smart: tests-pyright antlr
 	python3 -m pytest $(PYTEST_BASE_OPTS) $(PYTEST_OPTS) ./test_codegen.py -k 'smart'
 
 # Complete testsuite (should pass for lab5):
-tests-codegen: antlr
+tests-codegen: tests-pyright antlr
 	python3 -m pytest $(PYTEST_BASE_OPTS) $(PYTEST_OPTS) ./test_codegen.py
 
 tar: clean
