@@ -3,7 +3,7 @@ _Academic first semester 2021-2022_
 
 * MCC (final grade computation) : 
 ```
-let ccgrade = average(Lab3, Lab5, Lab?, partial)
+let ccgrade = average(Lab3, Lab5, Lab6, partial)
 in (finalnote + ccgrade)/2
 ```
 * The partial exam is this academic year replaced by a written housework ("DM").
