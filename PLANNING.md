@@ -121,10 +121,31 @@ in (finalnote + ccgrade)/2
 
     * Functions: code generation and typing [slides in english](course/2021-cap_cours09A_func_codegen_typing.pdf)
 
-- :hammer: Lab 6(1/2): Tuesday 16/10/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
+- :hammer: Lab 6(1/2): Tuesday 16/11/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
 
     * Code generation for functions [TP06](MiniC/TP06/tp6.pdf)
 
 - :book: Course session: Friday 19/11/2021 - 10:15. Amphi B (Ludovic Henrio)
 
     * Functions: semantics and safety [slides in english](course/2021-cap_cours09B_funsem.pdf)
+
+# Week 11
+
+- :hammer: Lab 6(2/2): Tuesday 23/11/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
+
+    * Code generation for functions [TP06](MiniC/TP06/tp6.pdf)
+
+- :book: Course session: Friday 26/11/2021 - 10:15. Amphi B (Ludovic Henrio)
+
+    * Parallelism 1/2 [slides in english](course/cap_cours10_parallelism.pdf)
+
+
+# Week 11
+
+- :hammer: Lab 6(3/2!): Tuesday 30/11/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
+
+    * Code generation for functions [TP06](MiniC/TP06/tp6.pdf)
+
+- :book: Course session: Friday 3/12/2021 - 10:15. Amphi B (Ludovic Henrio)
+
+    * Parallelism 2/2 [slides in english](course/cap_cours10_parallelism.pdf)
