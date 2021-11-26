@@ -149,3 +149,8 @@ in (finalnote + ccgrade)/2
 - :book: Course session: Friday 3/12/2021 - 10:15. Amphi B (Ludovic Henrio)
 
     * Parallelism 2/2 [slides in english](course/cap_cours10_parallelism.pdf)
+
+
+# !!! Homework !!!
+
+- Homework is [here](DM/dm_cap.pdf) Deadline: 10/12/2021 10:15 (during the last lab) --  paper version (possibly printed)
