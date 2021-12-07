@@ -140,7 +140,7 @@ in (finalnote + ccgrade)/2
     * Parallelism 1/2 [slides in english](course/cap_cours10_parallelism.pdf)
 
 
-# Week 11
+# Week 12
 
 - :hammer: Lab 6(3/2!): Tuesday 30/11/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
 
@@ -149,6 +149,19 @@ in (finalnote + ccgrade)/2
 - :book: Course session: Friday 3/12/2021 - 10:15. Amphi B (Ludovic Henrio)
 
     * Parallelism 2/2 [slides in english](course/cap_cours10_parallelism.pdf)
+
+
+# Week 13
+
+- :hammer: Lab 5c: Tuesday 7/12/2021, 15h45-17h45. Salles E001 (Nicolas Chappe) & 029 (Remi Di Guardia)
+
+    * Optimisation under SSA form [TP05c](MiniC/TP05c/tp5c.pdf)
+    * Code in [MiniC/TP05c/OptimSSA.py](MiniC/TP05c/OptimSSA.py)
+
+- :hammer: Lab Futur: Friday 10/12/2021, 10h15-12h15. Salles E001 (Nicolas Chappe) & Grenat (Remi Di Guardia)
+
+    * Futur [TP08](TP08/tp8.pdf)
+    * Code in [TP08/MiniC-futures](TP08/MiniC-futures)
 
 
 # !!! Homework !!!
