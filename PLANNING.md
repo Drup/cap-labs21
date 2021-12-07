@@ -158,9 +158,9 @@ in (finalnote + ccgrade)/2
     * Optimisation under SSA form [TP05c](MiniC/TP05c/tp5c.pdf)
     * Code in [MiniC/TP05c/OptimSSA.py](MiniC/TP05c/OptimSSA.py)
 
-- :hammer: Lab Futur: Friday 10/12/2021, 10h15-12h15. Salles E001 (Nicolas Chappe) & Grenat (Remi Di Guardia)
+- :hammer: Lab Futures: Friday 10/12/2021, 10h15-12h15. Salles E001 (Nicolas Chappe) & Grenat (Remi Di Guardia)
 
-    * Futur [TP08](TP08/tp8.pdf)
+    * Futures [TP08](TP08/tp8.pdf)
     * Code in [TP08/MiniC-futures](TP08/MiniC-futures)
 
 

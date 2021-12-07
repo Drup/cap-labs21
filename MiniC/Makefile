@@ -13,6 +13,11 @@ ifdef SSA
 export ENABLE_SSA=1
 endif
 
+ifdef SSA_OPTIM
+export ENABLE_SSA=1
+export SSA_OPTIMS=1
+endif
+
 PYTEST_BASE_OPTS=-vv -rs --failed-first --cov="$(PWD)" --cov-report=term --cov-report=html
 
 ifndef ANTLR4

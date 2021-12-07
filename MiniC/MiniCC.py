@@ -34,6 +34,10 @@ try:  # Liveness for TP05b (CAP)
     from TP05.LivenessSSA import LivenessSSA  # type: ignore[import]
 except ModuleNotFoundError:
     pass
+try:  # Optim for TP05c (CAP)
+    from TP05c.OptimSSA import OptimSSA  # type: ignore[import]
+except ModuleNotFoundError:
+    pass
 
 import argparse
 
@@ -62,7 +66,7 @@ class CountErrorListener(ErrorListener):
 
 def main(inputname, reg_alloc, enable_ssa=False,
          typecheck=True, typecheck_only=False, stdout=False, output_name=None, debug=False,
-         debug_graphs=False, ssa_graphs=False):
+         debug_graphs=False, ssa_graphs=False, ssa_optims=False):
     (basename, rest) = os.path.splitext(inputname)
     if not typecheck_only:
         if stdout:
@@ -114,6 +118,12 @@ def main(inputname, reg_alloc, enable_ssa=False,
                     s = "{}.{}.ssa.dot".format(basename, cfg._name)
                     print("Output", s)
                     cfg.print_dot(s, DF, True)
+                if ssa_optims:
+                    OptimSSA(cfg, debug=debug)
+                    if ssa_graphs:
+                        s = "{}.{}.optimssa.dot".format(basename, cfg._name)
+                        print("Output", s)
+                        cfg.print_dot(s, view=True)
             allocator = None
             if reg_alloc == "naive":
                 allocator = NaiveAllocator(cfg)
@@ -172,6 +182,9 @@ if __name__ == '__main__':
     parser.add_argument('--ssa', action='store_true',
                         default=False,
                         help='Enable SSA form')
+    parser.add_argument('--ssa-optim', action='store_true',
+                        default=False,
+                        help='Enable SSA optimizations')
     parser.add_argument('--stdout', action='store_true',
                         help='Generate code to stdout')
     parser.add_argument('--debug', action='store_true',
@@ -197,12 +210,15 @@ if __name__ == '__main__':
     if args.reg_alloc is None and not args.typecheck_only:
         print("error: the following arguments is required: --reg-alloc")
         exit(1)
+    if not args.ssa and args.ssa_optim:
+        print("error: SSA is needed for optimizations")
+        exit(1)
 
     try:
         main(args.filename, args.reg_alloc, args.ssa,
              not args.disable_typecheck, args.typecheck_only,
              args.stdout, args.output, args.debug,
-             args.graphs, args.ssa_graphs)
+             args.graphs, args.ssa_graphs, args.ssa_optim)
     except MiniCUnsupportedError as e:
         print(e)
         exit(5)
